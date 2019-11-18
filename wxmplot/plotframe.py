@@ -35,6 +35,10 @@ class PlotFrame(BaseFrame):
         """add an arc to plot"""
         self.panel.add_arc(x, y, width, height, angle, theta1, theta2, **kws)
 
+    def set_axes_equal(self):
+        """forces the x:y ratio to be 1"""
+        self.panel.set_axes_equal()
+
     def plot(self, x, y, **kw):
         """plot after clearing current plot """
         self.panel.plot(x, y, **kw)

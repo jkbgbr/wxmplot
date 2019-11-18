@@ -20,6 +20,7 @@ app = wx.App()
 pframe = wxmplot.PlotFrame(output_title='Plot Multiple')
 # pframe.add_arc(x=0, y=0, width=0.20, height=0.20, angle=0, theta1=math.radians(45), theta2=math.radians(135))
 pframe.add_arc(0, 0, 0.20, 0.20, 0, 0, 90)
+pframe.set_axes_equal()
 
 pframe.write_message('WXMPlot PlotFrame example: Try Help->Quick Reference')
 pframe.Show()

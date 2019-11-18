@@ -21,6 +21,7 @@ from matplotlib.ticker import FuncFormatter
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.gridspec import GridSpec
 from matplotlib.colors import colorConverter
+from matplotlib.patches import Arc
 from matplotlib.collections import CircleCollection
 
 from .plotconfigframe import PlotConfigFrame
@@ -329,6 +330,18 @@ class PlotPanel(BasePanel):
         t = axes.text(x, y, text, ha=ha, va=va, size=size,
                       rotation=rotation, family=family, **kws)
         self.conf.added_texts.append((dynamic_size, t))
+        self.draw()
+
+    def add_arc(self, x, y, width, height, angle, theta1, theta2, side='left', **kwargs):
+
+        axes = self.axes
+        if side == 'right':
+            axes = self.get_right_axes()
+        axes.add_patch(Arc((x, y), width, height, angle, theta1, theta2, **kwargs))
+        self.draw()
+
+    def set_axes_equal(self):
+        self.axes.set_aspect('equal')
         self.draw()
 
     def add_arrow(self, x1, y1, x2, y2,  side='left',
