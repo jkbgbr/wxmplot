@@ -33,7 +33,7 @@ DEFAULT_THEME = 'light'
 
 __all__ = ['wxapp', 'plot', 'newplot', 'imshow', 'get_wxapp', 'set_theme',
            'available_themes', 'get_plot_window', 'get_image_window',
-           'update_trace', 'plot_setlimits', 'plot_text', 'plot_arrow',
+           'update_trace', 'plot_setlimits', 'plot_text', 'plot_arrow', 'plot_arc',
            'plot_marker', 'plot_axhline', 'plot_axvline', 'hist',
            'contour', 'DEFAULT_THEME']
 
@@ -408,6 +408,34 @@ def plot_arrow(x1, y1, x2, y2, win=1, side='left',
     plotter.add_arrow(x1, y1, x2, y2, side=side, shape=shape,
                       color=color, width=width, head_length=head_length,
                       head_width=head_width, **kws)
+
+def plot_arc(x, y, width, height, angle, theta1, theta2, color='black', win=1, side='left', size=None, **kws):
+    """
+    Adds an arc to the plot. Arguments are same as in matplotlib
+
+    :param xy: center
+    :type xy: (float, float)
+    :param width: length of the horizontal axis
+    :type width: float
+    :param height: height of the vertical axis
+    :type height: float
+    :param angle: rotation of the elipse in degrees
+    :type angle: float
+    :param theta1: starting angle
+    :type theta1: float
+    :param theta2: end angle
+    :type theta2: float
+    :param kwargs: matplotlib.Patch properties, see https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.patches.Arc.html
+    :type kwargs:
+    :return:
+    :rtype:
+    """
+    plotter = get_plot_window(win=win, size=size)
+    if plotter is None:
+        return
+    plotter.Raise()
+    plotter.add_arc(x, y, width, height, angle, theta1, theta2, color=color, **kws)
+
 
 def plot_marker(x, y, marker='o', size=4, color='black', label='_nolegend_',
                 win=1,  **kws):

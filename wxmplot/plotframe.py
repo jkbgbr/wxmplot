@@ -31,6 +31,10 @@ class PlotFrame(BaseFrame):
         """add arrow to plot"""
         self.panel.add_arrow(x1, y1, x2, y2, **kws)
 
+    def add_arc(self, x, y, width, height, angle, theta1, theta2, **kws):
+        """add an arc to plot"""
+        self.panel.add_arc(x, y, width, height, angle, theta1, theta2, **kws)
+
     def plot(self, x, y, **kw):
         """plot after clearing current plot """
         self.panel.plot(x, y, **kw)
